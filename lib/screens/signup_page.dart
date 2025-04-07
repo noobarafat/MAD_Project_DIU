@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart';
+import 'package:university_event_management_system/widgets/bottom_nav_bar.dart';
 
 class SignupPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -64,7 +64,7 @@ class SignupPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
                       },
                       child: Text("Sign Up"),
                     ),

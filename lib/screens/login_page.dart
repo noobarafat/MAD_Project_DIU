@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_page.dart';
-import 'home_page.dart';
-
+import 'package:university_event_management_system/widgets/bottom_nav_bar.dart';
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -55,7 +54,7 @@ class LoginPage extends StatelessWidget {
                         padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
                       },
                       child: Text("Log In"),
                     ),

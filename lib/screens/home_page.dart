@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'event_detail_page.dart'; 
+import 'add_event_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -159,6 +160,24 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ],
+      )
+      ,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddEventPage()),
+          );
+        },
+        backgroundColor: Colors.deepPurpleAccent,
+        shape: RoundedRectangleBorder( // Adding a rounded shape
+    borderRadius: BorderRadius.circular(16),
+  ),
+  elevation: 10,
+        child: const Icon(Icons.add,
+        
+        color: Colors.white, 
+      ),
       ),
     );
   }
