@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AddEventPage extends StatefulWidget {
+  final Function(Map<String, String>) onAddEvent; 
+
+  AddEventPage({required this.onAddEvent});
+
   @override
   _AddEventPageState createState() => _AddEventPageState();
 }
@@ -13,6 +17,7 @@ class _AddEventPageState extends State<AddEventPage> {
   String date = '';
   String time = '';
   String category = '';
+  bool notify = false;  
 
   @override
   Widget build(BuildContext context) {
@@ -31,22 +36,42 @@ class _AddEventPageState extends State<AddEventPage> {
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Title'),
                   onChanged: (value) => title = value,
+                  validator: (value) => value!.isEmpty ? 'Enter Title' : null,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Description'),
                   onChanged: (value) => description = value,
+                  validator: (value) => value!.isEmpty ? 'Enter Description' : null,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Date'),
                   onChanged: (value) => date = value,
+                  validator: (value) => value!.isEmpty ? 'Enter Date' : null,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Time'),
                   onChanged: (value) => time = value,
+                  validator: (value) => value!.isEmpty ? 'Enter Time' : null,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(labelText: 'Category'),
                   onChanged: (value) => category = value,
+                  validator: (value) => value!.isEmpty ? 'Enter Category' : null,
+                ),
+                const SizedBox(height: 20),
+                // Notification toggle
+                Row(
+                  children: [
+                    Checkbox(
+                      value: notify,
+                      onChanged: (bool? newValue) {
+                        setState(() {
+                          notify = newValue!;
+                        });
+                      },
+                    ),
+                    const Text('Set Notification'),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
@@ -55,8 +80,17 @@ class _AddEventPageState extends State<AddEventPage> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // you can save event to local list or database here
-                      Navigator.pop(context); // go back to Home
+                      widget.onAddEvent({
+                        'title': title,
+                        'description': description,
+                        'date': date,
+                        'time': time,
+                        'category': category,
+                        'notify': notify ? 'true' : 'false',  
+                      });
+
+                      Navigator.pop(context); 
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text('Event Added Successfully!'),
