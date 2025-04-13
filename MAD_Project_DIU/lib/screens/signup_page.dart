@@ -6,6 +6,8 @@ class SignupPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  SignupPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,7 @@ class SignupPage extends StatelessWidget {
                       controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
-                        hintText: "Email",
+                        hintText: "Email Address ",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
