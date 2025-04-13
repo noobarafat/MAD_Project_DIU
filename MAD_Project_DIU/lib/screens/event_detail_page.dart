@@ -9,7 +9,7 @@ class EventDetailPage extends StatefulWidget {
   final String category;
   final String fullDescription;
 
-  const EventDetailPage({
+  const EventDetailPage({super.key, 
     required this.title,
     required this.image,
     required this.description,

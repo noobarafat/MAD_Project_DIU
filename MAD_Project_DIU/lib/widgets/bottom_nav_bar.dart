@@ -6,6 +6,8 @@ import 'package:university_event_management_system/screens/notification_screen.d
 import 'package:university_event_management_system/screens/profile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }

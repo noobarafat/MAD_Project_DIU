@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AddEventPage extends StatefulWidget {
   final Function(Map<String, String>) onAddEvent; 
 
-  AddEventPage({required this.onAddEvent});
+  const AddEventPage({super.key, required this.onAddEvent});
 
   @override
   _AddEventPageState createState() => _AddEventPageState();
