@@ -6,6 +6,8 @@ import 'package:university_event_management_system/screens/notification_screen.d
 import 'package:university_event_management_system/screens/profile_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
+  const BottomNavBar({super.key});
+
   @override
   _BottomNavBarState createState() => _BottomNavBarState();
 }
@@ -13,13 +15,36 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = [
-    HomePage(),
-    FilterScreen(),
-    FavoriteScreen(),
-    NotificationScreen(),
-    ProfileScreen(),
-  ];
+
+  List<Map<String, String>> favoriteEvents = [];
+
+
+  void _toggleFavorite(Map<String, String> event) {
+    setState(() {
+      if (favoriteEvents.contains(event)) {
+        favoriteEvents.remove(event); // Remove event from favorites
+      } else {
+        favoriteEvents.add(event); // Add event to favorites
+      }
+    });
+  }
+
+  final List<Widget> _screens = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _screens.addAll([
+      HomePage(favoriteEvents: favoriteEvents, toggleFavorite: _toggleFavorite),
+      FilterScreen(),
+      FavoriteScreen(favoriteEvents: favoriteEvents),
+      NotificationScreen(),
+      
+      ProfileScreen(),
+      
+    ]);
+  }
 
   void _onItemTapped(int index) {
     setState(() {

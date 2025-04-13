@@ -5,6 +5,8 @@ class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,13 +29,13 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Welcome Back", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text("Welcome to UniEvent", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                     SizedBox(height: 20),
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
-                        hintText: "Email",
+                        hintText: "Enter Your Email",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
@@ -43,7 +45,7 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
-                        hintText: "Password",
+                        hintText: "Enter Your Password",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
