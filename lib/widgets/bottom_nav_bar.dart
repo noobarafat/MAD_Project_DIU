@@ -22,9 +22,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void _toggleFavorite(Map<String, String> event) {
     setState(() {
       if (favoriteEvents.contains(event)) {
-        favoriteEvents.remove(event); // Remove event from favorites
+        favoriteEvents.remove(event);
       } else {
-        favoriteEvents.add(event); // Add event to favorites
+        favoriteEvents.add(event); 
       }
     });
   }

@@ -72,6 +72,8 @@ flutter:
     - assets/images/DIU_UTA.jpg
     - assets/images/UIU_Programming_carrier.jpg
     - assets/images/UIU_CCL_UI_UX_Design.jpg
+    - assets/images/main_logo.png
+    - assets/images/d_profile.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:university_event_management_system/models/notification_model.dart';
+import 'package:university_event_management_system/services/notification_service.dart';
 
 class AddEventPage extends StatefulWidget {
-  final Function(Map<String, String>) onAddEvent; 
+  final Function(Map<String, String>) onAddEvent;
 
   const AddEventPage({super.key, required this.onAddEvent});
- 
 
   @override
   _AddEventPageState createState() => _AddEventPageState();
@@ -18,7 +19,7 @@ class _AddEventPageState extends State<AddEventPage> {
   String date = '';
   String time = '';
   String category = '';
-  bool notify = false;  
+  bool notify = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class _AddEventPageState extends State<AddEventPage> {
                   validator: (value) => value!.isEmpty ? 'Enter Category' : null,
                 ),
                 const SizedBox(height: 20),
-                // Notification toggle
+          
                 Row(
                   children: [
                     Checkbox(
@@ -87,10 +88,22 @@ class _AddEventPageState extends State<AddEventPage> {
                         'date': date,
                         'time': time,
                         'category': category,
-                        'notify': notify ? 'true' : 'false',  
+                        'notify': notify ? 'true' : 'false',
                       });
 
-                      Navigator.pop(context); 
+                     
+                      if (notify) {
+                        final timestamp = '${date.trim()} ${time.trim()}';
+                        NotificationService().addNotification(
+                          NotificationModel(
+                            title: 'Reminder for $title',
+                            description: description,
+                            timestamp: timestamp,
+                          ),
+                        );
+                      }
+
+                      Navigator.pop(context);
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

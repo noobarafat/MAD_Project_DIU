@@ -16,7 +16,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Event Management',
+       debugShowCheckedModeBanner: false,
+      title: 'UniEvent',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       initialRoute: '/login',
       routes: {
