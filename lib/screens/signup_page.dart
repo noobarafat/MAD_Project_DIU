@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; 
 import 'package:university_event_management_system/widgets/bottom_nav_bar.dart';
 
 class SignupPage extends StatelessWidget {
@@ -45,7 +46,7 @@ class SignupPage extends StatelessWidget {
                       controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
-                        hintText: "Email Address ",
+                        hintText: "Email Address",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
@@ -65,8 +66,19 @@ class SignupPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                       ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+                      onPressed: () async {
+                        try {
+                          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
+                          Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => BottomNavBar()));
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Signup Failed: ${e.toString()}")),
+                          );
+                        }
                       },
                       child: Text("Sign Up"),
                     ),
