@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:university_event_management_system/models/notification_model.dart';
+import 'package:university_event_management_system/services/notification_service.dart';
 
 class AddEventPage extends StatefulWidget {
-  final Function(Map<String, String>) onAddEvent; 
+  final Function(Map<String, String>) onAddEvent;
 
   const AddEventPage({super.key, required this.onAddEvent});
  
@@ -18,7 +20,7 @@ class _AddEventPageState extends State<AddEventPage> {
   String date = '';
   String time = '';
   String category = '';
-  bool notify = false;  
+  bool notify = false;
 
   @override
   Widget build(BuildContext context) {
@@ -87,10 +89,22 @@ class _AddEventPageState extends State<AddEventPage> {
                         'date': date,
                         'time': time,
                         'category': category,
-                        'notify': notify ? 'true' : 'false',  
+                        'notify': notify ? 'true' : 'false',
                       });
 
-                      Navigator.pop(context); 
+                      // ✅ Add notification if toggle is ON
+                      if (notify) {
+                        final timestamp = '${date.trim()} ${time.trim()}';
+                        NotificationService().addNotification(
+                          NotificationModel(
+                            title: 'Reminder for $title',
+                            description: description,
+                            timestamp: timestamp,
+                          ),
+                        );
+                      }
+
+                      Navigator.pop(context);
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
