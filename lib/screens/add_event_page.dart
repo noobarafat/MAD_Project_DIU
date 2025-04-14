@@ -91,6 +91,18 @@ class _AddEventPageState extends State<AddEventPage> {
                         'notify': notify ? 'true' : 'false',
                       });
 
+                      // ✅ Add notification if toggle is ON
+                      if (notify) {
+                        final timestamp = '${date.trim()} ${time.trim()}';
+                        NotificationService().addNotification(
+                          NotificationModel(
+                            title: 'Reminder for $title',
+                            description: description,
+                            timestamp: timestamp,
+                          ),
+                        );
+                      }
+
                      
                       if (notify) {
                         final timestamp = '${date.trim()} ${time.trim()}';
