@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart'; 
 import 'signup_page.dart';
 import 'package:university_event_management_system/widgets/bottom_nav_bar.dart';
+
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +31,13 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text("Welcome Back", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    Text("Welcome to UniEvent", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                     SizedBox(height: 20),
                     TextField(
                       controller: emailController,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.email),
-                        hintText: "Email",
+                        hintText: "Enter Your Email",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
@@ -43,7 +47,7 @@ class LoginPage extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
-                        hintText: "Password",
+                        hintText: "Enter Your Password",
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
                       ),
                     ),
@@ -53,8 +57,19 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                       ),
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => BottomNavBar()));
+                      onPressed: () async {
+                        try {
+                          await FirebaseAuth.instance.signInWithEmailAndPassword(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim(),
+                          );
+                          Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => BottomNavBar()));
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Login Failed: ${e.toString()}")),
+                          );
+                        }
                       },
                       child: Text("Log In"),
                     ),

@@ -9,3 +9,4 @@ class NotificationModel {
     required this.timestamp,
   });
 }
+

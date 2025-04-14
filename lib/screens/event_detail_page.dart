@@ -9,7 +9,7 @@ class EventDetailPage extends StatefulWidget {
   final String category;
   final String fullDescription;
 
-  const EventDetailPage({
+  const EventDetailPage({super.key, 
     required this.title,
     required this.image,
     required this.description,
@@ -84,25 +84,43 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isInterested ? Colors.green : Colors.grey,
+                      backgroundColor: isInterested ? Colors.green : Colors.deepPurple, 
+                      foregroundColor: Colors.white, 
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () {
                       setState(() {
                         isInterested = !isInterested;
                       });
                     },
-                    child: Text('Interested'),
+                    child: Text(
+                      'Interested',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold, 
+                      ),
+                    ),
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: isGoing ? Colors.blue : Colors.grey,
+                      backgroundColor: isGoing ? Colors.blue : Colors.deepPurple, 
+                      foregroundColor: Colors.white, 
+                      padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () {
                       setState(() {
                         isGoing = !isGoing;
                       });
                     },
-                    child: Text('Going'),
+                    child: Text(
+                      'Going',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold, 
+                      ),
+                    ),
                   ),
                 ],
               ),

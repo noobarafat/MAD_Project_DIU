@@ -218,25 +218,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
-  Widget _buildStatColumn(int number, String label) {
-    return Column(
-      children: [
-        Text(
-          '$number',
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-        Text(label),
-      ],
-    );
-  }
-
-  Widget _buildInfoTile(IconData icon, String title, String value) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-      subtitle: Text(value),
-      dense: true,
-    );
-  }
 }
