@@ -16,11 +16,13 @@ This is a mobile app built using Flutter that helps university students explore 
 ## Drive Link of Demo Video
 https://drive.google.com/file/d/11434MVOtELaFohmsEBz_Ww-sAQ_ORIgi/view?usp=drivesdk
 
-## Drive Link of Project Report
-https://drive.google.com/file/d/1AVFm_pgcEKaX9s5f--JUO8kb1ikHr8U9/view?usp=sharing
-
-## Drive Link of APK
+## Drive Link of the APK
 https://drive.google.com/file/d/1Y-4agE5oY8-JASHGjty2gvCgCOa9INvd/view?usp=sharing
+
+## Drive Link of Project Report
+https://drive.google.com/file/d/1dNXKD8NM0uMwHvLFJoWBeAiVs-BgTtNO/view?usp=sharing
+
+
 
 
 
